@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ReviewNetCore.Models.Story
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,4 +9,45 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<a asp-action="Create" asp-controller="Home">Create a new Story</a>
+<a asp-action="ViewStories" class="btn btn-primary" asp-controller="Home">View my stories</a>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Create a new story
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload your story</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="DoCreate" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="TheDescription" class="control-label"></label>
+                        <input asp-for="TheDescription" class="form-control" />
+                        <span asp-validation-for="TheDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Picture" class="control-label"></label>
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" name="postedFile" id="myFile">
+                            <label class="input-group-text" for="myFile">Upload</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Upload the story" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

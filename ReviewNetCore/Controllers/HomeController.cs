@@ -25,6 +25,14 @@ namespace ReviewNetCore.Controllers
         {
             return View();
         }
+
+        public IActionResult ViewStories()
+        {
+            var allStories = db.Stories.ToList();
+            return View(allStories);
+        }
+
+       
        
         public async Task<IActionResult> DoCreate(IFormFile postedFile, Story story)
         {

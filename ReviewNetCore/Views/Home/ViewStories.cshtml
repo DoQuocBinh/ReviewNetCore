@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ReviewNetCore.Models.Story>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@foreach (var item in Model)
+{
+
+    string imgSrc = null;
+    if (item.Picture != null)
+    {
+        var base64 = Convert.ToBase64String(item.Picture);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@imgSrc">
+        <div class="card-body">
+            <p class="card-text">@item.TheDescription</p>
+        </div>
+    </div>
+
+}
