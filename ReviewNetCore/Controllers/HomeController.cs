@@ -31,7 +31,14 @@ namespace ReviewNetCore.Controllers
             var allStories = db.Stories.ToList();
             return View(allStories);
         }
-
+        public IActionResult Delete(int id)
+        {
+            var story = db.Stories.SingleOrDefault(s => s.StoryId == id);
+            db.Stories.Remove(story);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            
+        }
        
        
         public async Task<IActionResult> DoCreate(IFormFile postedFile, Story story)

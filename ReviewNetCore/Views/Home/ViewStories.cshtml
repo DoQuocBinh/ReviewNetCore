@@ -19,8 +19,10 @@
         var base64 = Convert.ToBase64String(item.Picture);
         imgSrc = String.Format("data:image/gif;base64,{0}", base64);
     }
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="@imgSrc">
+    <div class="card" style="width: 18rem;display:inline-block;margin-top:8px">
+        <a href="Delete?id=@item.StoryId">
+            <img class="card-img-top" src="@imgSrc">
+        </a>
         <div class="card-body">
             <p class="card-text">@item.TheDescription</p>
         </div>
